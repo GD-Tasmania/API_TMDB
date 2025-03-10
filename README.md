@@ -1,40 +1,23 @@
-# mi-api-tmdb (mi-api-tmdb)
+# API TMDB
 
-Api-TMDB
-
-## Install the dependencies
+## Instalar dependencias
 ```bash
-yarn
+yarn install
 # or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciar la aplicación en modo de desarrollo
 ```bash
 quasar dev
 ```
 
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-### Build the app for production
+### Crea la aplicación para producción
 ```bash
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+### Link Despliegue en Netlify
+```bash
+https://mitmdpapi.netlify.app/
+```
