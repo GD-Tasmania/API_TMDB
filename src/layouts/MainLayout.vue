@@ -1,45 +1,43 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh LpR fFf" class="text-white"> <!-- 🔹 Usa 'lFf' en lugar de 'lLf' -->
+    <q-header elevated class="q-py-md bg-primary">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn flat @click="drawer = !drawer" round dense icon="menu" class="q-ml-md" />
+        <q-toolbar-title class="text-h4 text-weight letter-spacing-wide font-serif q-ml-md">API TMDB</q-toolbar-title>
+          <q-item class="col-1 q-mr-md" clickable to="/">
+            <q-img
+              src="/image/logoApi.webp"
+              :ratio="1"
+              style="width: 60px; border-radius: 8%;"
+            />
+          </q-item>
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
+      v-model="drawer"
       show-if-above
+      :width="180"
+      :breakpoint="375"
       bordered
+      class="bg-black"
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+        <template v-for="(menuItem, index) in menuList" :key="index">
+          <q-item clickable :active="menuItem.label === pageSelect" v-ripple :to="menuItem.to" class="navbar-drawer">
+            <q-item-section avatar>
+              <q-icon :name="menuItem.icon" />
+            </q-item-section>
+            <q-item-section>
+              {{ menuItem.label }}
+            </q-item-section>
+          </q-item>
+          <q-separator :key="'sep' + index" v-if="menuItem.separator" />
+        </template>
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="fondo-textura">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -47,56 +45,53 @@
 
 <script setup>
 import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
+const drawer = ref(false)
+const pageSelect = ref('Inbox')
+const menuList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    icon: 'inbox',
+    label: 'Inicio',
+    separator: true,
+    to: '/',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    icon: 'send',
+    label: 'Peliculas',
+    separator: false,
+    to: '/peliculas',
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    icon: 'update',
+    label: 'Series',
+    separator: false,
+    to: '/series',
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    icon: 'update',
+    label: 'Cartelera',
+    separator: false,
+    to: '/cartelera',
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
+    icon: 'update',
+    label: 'Proximos estrenos',
+    separator: false,
+    to: '/estrenos',
   },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
 ]
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
 </script>
+
+<style scoped lang="scss">
+
+::v-deep(.navbar-drawer) {
+  border: double 3px $primary;
+  margin-top: 5px;
+}
+::v-deep(.fondo-textura){
+  background: url("/image/fondoApi.webp") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+</style>
