@@ -1,0 +1,7 @@
+[build]
+  command = "yarn build"
+  publish = "dist/spa"
+  environment = { NODE_VERSION = "18" }
+
+[build.processing]
+  skip_processing = false
