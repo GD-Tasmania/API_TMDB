@@ -4,11 +4,11 @@
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" class="q-ml-md" />
         <q-toolbar-title class="text-h4 text-weight letter-spacing-wide font-serif q-ml-md">API TMDB</q-toolbar-title>
-          <q-item class="col-1 q-mr-md" clickable to="/">
+          <q-item class="col-1 q-mr-md" clickable to="/" style="width: 80px;">
             <q-img
               src="/image/logoApi.webp"
               :ratio="1"
-              style="width: 60px; border-radius: 8%;"
+              style="width: 100%; border-radius: 8px;"
             />
           </q-item>
       </q-toolbar>
@@ -55,25 +55,25 @@ const menuList = [
     to: '/',
   },
   {
-    icon: 'send',
+    icon: 'movie',
     label: 'Peliculas',
     separator: false,
     to: '/peliculas',
   },
   {
-    icon: 'update',
+    icon: 'tv',
     label: 'Series',
     separator: false,
     to: '/series',
   },
   {
-    icon: 'update',
+    icon: 'theaters',
     label: 'Cartelera',
     separator: false,
     to: '/cartelera',
   },
   {
-    icon: 'update',
+    icon: 'event',
     label: 'Proximos estrenos',
     separator: false,
     to: '/estrenos',

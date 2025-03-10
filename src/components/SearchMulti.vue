@@ -20,7 +20,7 @@
 <style scoped>
   .sticky-search {
     position: sticky;
-    top: 80px;
+    top: 87px;
     z-index: 1000;
     padding: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
